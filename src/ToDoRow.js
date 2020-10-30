@@ -2,8 +2,14 @@ import React, {Component} from 'react';
 
 
 // FEATURES 3 AND 4
+
+
+
 export class ToDoRow extends Component {
   render = () =>
+
+
+
   <tr>
       <td>
             {this.props.myToDoItem.action}
@@ -14,4 +20,7 @@ export class ToDoRow extends Component {
                   onChange={() => this.props.callback(this.props.myToDoItem)} />
       </td>
   </tr>
+
+
+
 }
