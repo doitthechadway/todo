@@ -4,6 +4,7 @@ import { ToDoBanner } from './ToDoBanner';
 import { ToDoRow } from './ToDoRow';
 import { ToDoCreator } from './ToDoCreator';
 import 'bootstrap/dist/css/bootstrap.css';
+import { VisibilityControl } from './VisibilityControl';
 
 export default class App extends Component {
   //  Above we have created a class called App the extends the functionality of the Component class
@@ -55,7 +56,7 @@ export default class App extends Component {
     },
     () => localStorage.setItem("storedTodos", JSON.stringify(this.state)
 
-  ));
+    ));
 
   //  The createNewTodoCallback method below is the callback for the ToDoCreator component
   //  The "newToDoAction" parameter passed into the createNewTodoCallback method below comes from where the callback it initiated from- which is in the createNewTodo method of the ToDoCreator Component
@@ -124,19 +125,29 @@ export default class App extends Component {
       </table>
 
       <div className="bg-secondary text-white text-center p-2">
+        {/*feature 8*/}
+        <VisibilityControl
+          description="Completed To-Do Items"
+          isChecked={this.state.showCompleted}
+          callback={checked => this.setState({ showCompleted: checked })} />
+</div>
 
-        {/*Features 6 & 7*/}
-        <table className="table table-striped table-bordered">
-          <thead>
-            <th>Description</th>
-            <th>Mark Complete</th>
-          </thead>
-          <tbody>
-            {this.todoTableRows(true)}
-          </tbody>
-        </table>
+
+        {/*feature 6 & 7*/}
+
+        {this.state.showCompleted &&
+
+          <table className="table table-striped table-bordered">
+            <thead>
+              <th>Description</th>
+              <th>Mark Complete</th>
+            </thead>
+            <tbody>
+              {this.todoTableRows(true)}
+            </tbody>
+          </table>
+        }
       </div>
-    </div>
 }
 
 
